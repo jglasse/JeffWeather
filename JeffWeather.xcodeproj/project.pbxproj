@@ -15,10 +15,10 @@
 		6BDCF3EE22BC00B40072B257 /* JeffWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDCF3ED22BC00B40072B257 /* JeffWeatherTests.swift */; };
 		6BDCF3F922BC00B40072B257 /* JeffWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BDCF3F822BC00B40072B257 /* JeffWeatherUITests.swift */; };
 		6BFD4B8122C01864009E5DF7 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8022C01864009E5DF7 /* ForecastCell.swift */; };
-		6BFD4B8522C023A0009E5DF7 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8422C023A0009E5DF7 /* DayModel.swift */; };
+		6BFD4B8522C023A0009E5DF7 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8422C023A0009E5DF7 /* Day.swift */; };
 		6BFD4B8722C02463009E5DF7 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8622C02463009E5DF7 /* UtilityFunctions.swift */; };
 		6BFD4B8922C039A4009E5DF7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8822C039A4009E5DF7 /* NetworkManager.swift */; };
-		6BFD4B8C22C0B489009E5DF7 /* ClaviusCoffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BFD4B8B22C0B489009E5DF7 /* ClaviusCoffee.png */; };
+		6BFD4BC922C15C91009E5DF7 /* DarkSkyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD4BC822C15C91009E5DF7 /* DarkSkyManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +53,10 @@
 		6BDCF3F822BC00B40072B257 /* JeffWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JeffWeatherUITests.swift; sourceTree = "<group>"; };
 		6BDCF3FA22BC00B40072B257 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BFD4B8022C01864009E5DF7 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
-		6BFD4B8422C023A0009E5DF7 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
+		6BFD4B8422C023A0009E5DF7 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		6BFD4B8622C02463009E5DF7 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		6BFD4B8822C039A4009E5DF7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		6BFD4B8B22C0B489009E5DF7 /* ClaviusCoffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ClaviusCoffee.png; sourceTree = "<group>"; };
+		6BFD4BC822C15C91009E5DF7 /* DarkSkyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,15 +108,11 @@
 			isa = PBXGroup;
 			children = (
 				6BDCF3D822BC00B10072B257 /* AppDelegate.swift */,
-				6BDCF3DA22BC00B10072B257 /* JeffWeatherVC.swift */,
-				6BFD4B8022C01864009E5DF7 /* ForecastCell.swift */,
-				6BFD4B8B22C0B489009E5DF7 /* ClaviusCoffee.png */,
-				6BFD4B8822C039A4009E5DF7 /* NetworkManager.swift */,
-				6BFD4B8422C023A0009E5DF7 /* DayModel.swift */,
+				6BFD4BCA22C17659009E5DF7 /* View Controllers */,
+				6BFD4BCB22C17676009E5DF7 /* Managers */,
+				6BFD4BC722C0C580009E5DF7 /* Models */,
 				6BFD4B8622C02463009E5DF7 /* UtilityFunctions.swift */,
-				6BDCF3DF22BC00B30072B257 /* Assets.xcassets */,
-				6BDCF3DC22BC00B10072B257 /* Main.storyboard */,
-				6BDCF3E122BC00B30072B257 /* LaunchScreen.storyboard */,
+				6BFD4BCC22C1768C009E5DF7 /* Misc */,
 				6BDCF3E422BC00B30072B257 /* Info.plist */,
 			);
 			path = JeffWeather;
@@ -138,6 +134,42 @@
 				6BDCF3FA22BC00B40072B257 /* Info.plist */,
 			);
 			path = JeffWeatherUITests;
+			sourceTree = "<group>";
+		};
+		6BFD4BC722C0C580009E5DF7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6BFD4B8422C023A0009E5DF7 /* Day.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6BFD4BCA22C17659009E5DF7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6BDCF3DA22BC00B10072B257 /* JeffWeatherVC.swift */,
+				6BFD4B8022C01864009E5DF7 /* ForecastCell.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6BFD4BCB22C17676009E5DF7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6BFD4BC822C15C91009E5DF7 /* DarkSkyManager.swift */,
+				6BFD4B8822C039A4009E5DF7 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		6BFD4BCC22C1768C009E5DF7 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				6BDCF3DF22BC00B30072B257 /* Assets.xcassets */,
+				6BDCF3DC22BC00B10072B257 /* Main.storyboard */,
+				6BDCF3E122BC00B30072B257 /* LaunchScreen.storyboard */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,7 +279,6 @@
 				6BDCF3E322BC00B30072B257 /* LaunchScreen.storyboard in Resources */,
 				6BDCF3E022BC00B30072B257 /* Assets.xcassets in Resources */,
 				6BDCF3DE22BC00B10072B257 /* Main.storyboard in Resources */,
-				6BFD4B8C22C0B489009E5DF7 /* ClaviusCoffee.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,9 +305,10 @@
 			files = (
 				6BFD4B8722C02463009E5DF7 /* UtilityFunctions.swift in Sources */,
 				6BDCF3DB22BC00B10072B257 /* JeffWeatherVC.swift in Sources */,
-				6BFD4B8522C023A0009E5DF7 /* DayModel.swift in Sources */,
+				6BFD4B8522C023A0009E5DF7 /* Day.swift in Sources */,
 				6BFD4B8922C039A4009E5DF7 /* NetworkManager.swift in Sources */,
 				6BFD4B8122C01864009E5DF7 /* ForecastCell.swift in Sources */,
+				6BFD4BC922C15C91009E5DF7 /* DarkSkyManager.swift in Sources */,
 				6BDCF3D922BC00B10072B257 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

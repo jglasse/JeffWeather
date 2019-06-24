@@ -4,20 +4,17 @@
 //
 //  Created by Jeff Glasse on 6/23/19.
 //  Copyright © 2019 Jeff Glasse. All rights reserved.
-// Boilerplate networking code I wrote for another restful APP
+// Boilerplate Swift networking code for GET requests
 
 import Foundation
 
 class NetworkManager {
-    private let APIKey = "7c6b20e30a993f19805cbe6100f1d552"
-    private let BURL = "https://api.darksky.net/forecast/"
-    private let contentType = "application/json"
-    private let userAgent = "com.glasseHouse.JeffWeather.ios"
+    var baseURL = ""
+    var contentType = ""
+    var userAgent = ""
     
     static var sharedInstance  =  NetworkManager()
     var singleNetworkSession = URLSession(configuration: .default)
-    
-    
     
     
     
@@ -63,7 +60,7 @@ class NetworkManager {
     private func URLRequestGenerator(path: String) -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
-        urlComponents.host = BURL
+        urlComponents.host = baseURL
         urlComponents.path = path
         guard let url = urlComponents.url else {
             fatalError("Could not create URL from components")

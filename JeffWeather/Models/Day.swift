@@ -10,9 +10,14 @@ import Foundation
 import UIKit
 
 struct Day {
-    var date: Date
-    var highTemp: Float
-    var lowTemp: Float
-    var forecastImage: UIImage
+    var time: Date
+    var icon: String
+    var temperatureMax: Float
+    var temperatureMin: Float
     
+    
+}
+
+struct forecast {
+    var forecast: [Day]
 }
