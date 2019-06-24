@@ -24,7 +24,11 @@ class DarkSkyManager {
         networkManager.userAgent = userAgent
     }
     
-    
+    func getForecast(lat: String, long: String) {
+        devLog("getting Forecast for latitude \(lat), longditude \(long)")
+        devLog("from URL: \(BURL) ")
+
+    }
     
     
     

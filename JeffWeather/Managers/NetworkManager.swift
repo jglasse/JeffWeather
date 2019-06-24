@@ -16,8 +16,6 @@ class NetworkManager {
     static var sharedInstance  =  NetworkManager()
     var singleNetworkSession = URLSession(configuration: .default)
     
-    
-    
     // MARK: - Generic Network functions
     private func genericAPIGETRequest<T: Codable>(path: String, returnType: T.Type, completionBlock: ((T?, Error?)->Void)?) {
         // create request and dataTask from path.

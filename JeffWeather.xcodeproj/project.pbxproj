@@ -108,11 +108,11 @@
 			isa = PBXGroup;
 			children = (
 				6BDCF3D822BC00B10072B257 /* AppDelegate.swift */,
-				6BFD4BCA22C17659009E5DF7 /* View Controllers */,
+				6BFD4BCA22C17659009E5DF7 /* View Controllers+CustomViews */,
 				6BFD4BCB22C17676009E5DF7 /* Managers */,
 				6BFD4BC722C0C580009E5DF7 /* Models */,
 				6BFD4B8622C02463009E5DF7 /* UtilityFunctions.swift */,
-				6BFD4BCC22C1768C009E5DF7 /* Misc */,
+				6BFD4BCC22C1768C009E5DF7 /* Assets & Storyboards */,
 				6BDCF3E422BC00B30072B257 /* Info.plist */,
 			);
 			path = JeffWeather;
@@ -144,13 +144,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		6BFD4BCA22C17659009E5DF7 /* View Controllers */ = {
+		6BFD4BCA22C17659009E5DF7 /* View Controllers+CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				6BDCF3DA22BC00B10072B257 /* JeffWeatherVC.swift */,
 				6BFD4B8022C01864009E5DF7 /* ForecastCell.swift */,
 			);
-			path = "View Controllers";
+			path = "View Controllers+CustomViews";
 			sourceTree = "<group>";
 		};
 		6BFD4BCB22C17676009E5DF7 /* Managers */ = {
@@ -162,14 +162,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		6BFD4BCC22C1768C009E5DF7 /* Misc */ = {
+		6BFD4BCC22C1768C009E5DF7 /* Assets & Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				6BDCF3DF22BC00B30072B257 /* Assets.xcassets */,
 				6BDCF3DC22BC00B10072B257 /* Main.storyboard */,
 				6BDCF3E122BC00B30072B257 /* LaunchScreen.storyboard */,
 			);
-			path = Misc;
+			path = "Assets & Storyboards";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

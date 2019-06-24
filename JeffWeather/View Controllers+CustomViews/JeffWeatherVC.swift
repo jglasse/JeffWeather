@@ -60,11 +60,12 @@ extension JeffWeatherVC {
         {
             locationManager.requestLocation()
             currentLocation = locationManager.location
-            devLog(currentLocation)
+            devLog(currentLocation as Any)
+            
         }
         else
         {
-            currentLocation = nil // not really necessary, but here for clarity
+            devLog("didChangeAuthorization, but the news isn't good")
         }
     }
     
