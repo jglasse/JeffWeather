@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="G2q-86-Q0d">
-    <device id="ipad9_7" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -13,13 +13,13 @@
         <!--JeffWeather-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="JeffWeatherVC" customModule="JeffWeather" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ForecastMainVC" customModule="JeffWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QiD-ee-TRm">
-                                <rect key="frame" x="0.0" y="70" width="768" height="1024"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="2wZ-3H-bor">
                                     <size key="itemSize" width="100" height="135"/>
@@ -127,20 +127,37 @@
             </objects>
             <point key="canvasLocation" x="798" y="783"/>
         </scene>
-        <!--View Controller-->
+        <!--SummaryVC-->
         <scene sceneID="Eti-gk-d9W">
             <objects>
-                <viewController storyboardIdentifier="summaryView" id="B6M-Y9-ZqF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="summaryView" id="B6M-Y9-ZqF" customClass="SummaryVC" customModule="JeffWeather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ice-AF-QvP">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkE-Or-m8E">
+                                <rect key="frame" x="16" y="267" width="343" height="133"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IkE-Or-m8E" firstAttribute="centerX" secondItem="lKV-lq-Hag" secondAttribute="centerX" id="2wr-eG-Wwc"/>
+                            <constraint firstItem="IkE-Or-m8E" firstAttribute="centerY" secondItem="lKV-lq-Hag" secondAttribute="centerY" constant="-10" id="Lda-hH-nr0"/>
+                            <constraint firstItem="lKV-lq-Hag" firstAttribute="top" secondItem="IkE-Or-m8E" secondAttribute="bottom" constant="-380" id="RWN-z3-Iez"/>
+                            <constraint firstItem="IkE-Or-m8E" firstAttribute="leading" secondItem="lKV-lq-Hag" secondAttribute="trailing" constant="-359" id="tFr-29-9kI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lKV-lq-Hag"/>
                     </view>
+                    <connections>
+                        <outlet property="summaryLabel" destination="IkE-Or-m8E" id="hc9-p3-tcY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRl-v5-hYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="787"/>
+            <point key="canvasLocation" x="1474.4000000000001" y="786.65667166416802"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zIK-6a-c9T">
@@ -148,7 +165,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G2q-86-Q0d" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OfO-em-2ic">
-                        <rect key="frame" x="0.0" y="20" width="768" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

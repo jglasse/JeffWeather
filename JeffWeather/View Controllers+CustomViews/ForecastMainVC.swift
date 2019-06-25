@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ForecastMainVC.swift
 //  JeffWeather
 //
 //  Created by Jeff Glasse on 6/20/19.
@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 
-class JeffWeatherVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate {
+class ForecastMainVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate {
     var currentLocation: CLLocation?
     let locationManager = CLLocationManager()
    // let sampleModel = [Day(time: Date(), icon: "blah", temperatureMax: 50, temperatureMin: 20, summary: "<#T##String#>")]
@@ -45,7 +45,7 @@ class JeffWeatherVC: UIViewController, UICollectionViewDelegate,UICollectionView
 
 // MARK: - CoreLocation Methods
 
-extension JeffWeatherVC {
+extension ForecastMainVC {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locationManager.location
@@ -59,13 +59,14 @@ extension JeffWeatherVC {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("locationManager didChangeAuthorization")
         if status == .authorizedWhenInUse
         {
             locationManager.requestLocation()
             currentLocation = locationManager.location
             devLog(currentLocation as Any)
-            forecastCollectionView.reloadData()
+            DispatchQueue.main.async {
+            self.forecastCollectionView.reloadData()
+            }
             
         }
         else
@@ -80,15 +81,17 @@ extension JeffWeatherVC {
 
 
 // MARK: - UICOllectiomView Methods
-extension JeffWeatherVC {
+extension ForecastMainVC {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let summaryVC = (storyboard?.instantiateViewController(withIdentifier: "test"))!
+        let summaryVC = (storyboard?.instantiateViewController(withIdentifier: "summaryView")) as! SummaryVC
+        summaryVC.summary = darkSkyManager.model[indexPath.item].summary
         self.navigationController?.pushViewController(summaryVC, animated: true)
+
         
     }
     
@@ -100,7 +103,7 @@ extension JeffWeatherVC {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCell", for: indexPath) as! ForecastCell
      //   set labels and image here
-        cell.dayField.text = dayFormatter.string(from: darkSkyManager.model[indexPath.item].time)
+        cell.dayField.text = dayFormatter.string(from: darkSkyManager.model[indexPath.item].actualDate)
         if let iconImage = UIImage(named: darkSkyManager.model[indexPath.item].icon)
         {
             cell.imageView.image = iconImage
@@ -109,9 +112,8 @@ extension JeffWeatherVC {
         {
             cell.imageView.image = UIImage(named: "undefined")
         }
-        
-        cell.highField.text = String(darkSkyManager.model[indexPath.item].temperatureHigh)
-        cell.lowField.text = String(darkSkyManager.model[indexPath.item].temperatureLow)
+        cell.highField.text = String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureHigh)
+        cell.lowField.text = String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureLow)
         return cell
     }
     

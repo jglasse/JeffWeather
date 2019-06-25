@@ -4,7 +4,7 @@
 //
 //  Created by Jeff Glasse on 6/23/19.
 //  Copyright © 2019 Jeff Glasse. All rights reserved.
-// Boilerplate Swift networking code for GET requests
+//  Boilerplate Swift networking code for GET requests
 
 import Foundation
 
@@ -43,13 +43,13 @@ final class NetworkManager {  // TODO: these should be moved to DarkSky Manager
                 } catch {
                     self.handleLocalError(error: error)
                     if let unhappyEnding = completionBlock {
-                        print("setup decode failed!")
+                        devLog("setup decode failed!")
                         unhappyEnding(nil, error)
                     }
                     return
                 }
             } else { // responseData is nil
-                print("no readable data in response")
+                devLog("no readable data in response")
             }
         }
         task.resume() // this should really be called "start" as it's called to begin the dataTask.

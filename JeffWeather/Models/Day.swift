@@ -19,10 +19,13 @@ struct Daily:Codable {
 }
 
 struct Day:Codable {
-    var time: Date
+    var time: Double
     var summary: String
     var icon: String
     var temperatureHigh: Float
     var temperatureLow: Float
+    var actualDate: Date {
+        return Date(timeIntervalSince1970: time)
+    }
 }
 

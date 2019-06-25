@@ -13,21 +13,19 @@ class DarkSkyManager {
     var model = [Day]()
     private let networkManager = NetworkManager.sharedInstance
 
-    
     func getForecast(lat: String, long: String, UIcompletion: @escaping ()->Void) {
         let fullPath = "\(lat),\(long)"
         networkManager.genericAPIGETRequest(path: fullPath, returnType: DarkSkyResponse.self, completionBlock: {(response, error) in
             self.model = response?.daily.data ?? [Day]()
+            DispatchQueue.main.async {
             UIcompletion()
+            }
         })
     }
     
     func getForeCastCompletion(response: DarkSkyResponse?, err: Error?) {
         self.model = response?.daily.data ?? [Day]()
-        print("getForeCastCompletion COMPLETED")
-        print("self.model =  \(self.model)")
-        print("self.model.count =  \(self.model.count)")
-    
+        devLog("self.model =  \(self.model)")
     }
     
 }
