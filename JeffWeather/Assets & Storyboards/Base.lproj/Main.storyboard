@@ -51,9 +51,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iib-YS-XHm" userLabel="lowField">
-                                                    <rect key="frame" x="10" y="114" width="50" height="21"/>
+                                                    <rect key="frame" x="10" y="114" width="80" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="mS2-LN-bQp"/>
                                                         <constraint firstAttribute="height" constant="21" id="mt5-0J-yCz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -72,6 +71,7 @@
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="iib-YS-XHm" firstAttribute="trailing" secondItem="5sj-0S-lgp" secondAttribute="trailing" id="04n-pL-wX3"/>
                                             <constraint firstItem="5sj-0S-lgp" firstAttribute="trailing" secondItem="pIt-pt-TUu" secondAttribute="trailing" id="CWN-nh-SdC"/>
                                             <constraint firstItem="iib-YS-XHm" firstAttribute="leading" secondItem="pIt-pt-TUu" secondAttribute="leading" id="HoU-T7-hTC"/>
                                             <constraint firstItem="Anz-iw-mp7" firstAttribute="centerX" secondItem="YqP-Ya-Wl7" secondAttribute="centerX" id="I9k-Av-pOf"/>
