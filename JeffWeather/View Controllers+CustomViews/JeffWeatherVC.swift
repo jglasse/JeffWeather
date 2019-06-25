@@ -13,10 +13,11 @@ import CoreLocation
 class JeffWeatherVC: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,CLLocationManagerDelegate {
     var currentLocation: CLLocation?
     let locationManager = CLLocationManager()
-    var foreCastModel = [Day]()
-    let sampleModel = [Day(time: Date(), icon: "clear-day", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "clear-night", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "fog", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "cloudy", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "partly-cloudy-day", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "partly-cloudy-day", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "partly-cloudy-night", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "sleet", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "snow", temperatureMax: 80, temperatureMin: 30),Day(time: Date(), icon: "wind", temperatureMax: 80, temperatureMin: 30)]
+   // let sampleModel = [Day(time: Date(), icon: "blah", temperatureMax: 50, temperatureMin: 20, summary: "<#T##String#>")]
     let dayFormatter = DateFormatter()
     let darkSkyManager = DarkSkyManager()
+    var currentLat = ""
+    var currentLong = ""
     
     
     override func viewDidLoad() {
@@ -46,14 +47,17 @@ class JeffWeatherVC: UIViewController, UICollectionViewDelegate,UICollectionView
 
 extension JeffWeatherVC {
     
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         currentLocation = locationManager.location
+        currentLat = "\(currentLocation?.coordinate.latitude ?? 0)"
+        currentLong = "\(currentLocation?.coordinate.longitude ?? 0)"
+        darkSkyManager.getForecast(lat: currentLat, long: currentLong, UIcompletion: self.forecastCollectionView.reloadData)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         devLog("location manager failure")
     }
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("locationManager didChangeAuthorization")
         if status == .authorizedWhenInUse
@@ -61,11 +65,12 @@ extension JeffWeatherVC {
             locationManager.requestLocation()
             currentLocation = locationManager.location
             devLog(currentLocation as Any)
+            forecastCollectionView.reloadData()
             
         }
         else
         {
-            devLog("didChangeAuthorization, but the news isn't good")
+            devLog("didChangeAuthorization, but access has not been granted")
         }
     }
     
@@ -82,18 +87,21 @@ extension JeffWeatherVC {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let summaryVC = (storyboard?.instantiateViewController(withIdentifier: "test"))!
+        self.navigationController?.pushViewController(summaryVC, animated: true)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleModel.count
+        return darkSkyManager.model.count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ForecastCell", for: indexPath) as! ForecastCell
      //   set labels and image here
-        cell.dayField.text = dayFormatter.string(from: sampleModel[indexPath.item].time)
-        if let iconImage = UIImage(named: sampleModel[indexPath.item].icon)
+        cell.dayField.text = dayFormatter.string(from: darkSkyManager.model[indexPath.item].time)
+        if let iconImage = UIImage(named: darkSkyManager.model[indexPath.item].icon)
         {
             cell.imageView.image = iconImage
         }
@@ -102,8 +110,8 @@ extension JeffWeatherVC {
             cell.imageView.image = UIImage(named: "undefined")
         }
         
-        cell.highField.text = String(sampleModel[indexPath.item].temperatureMax)
-        cell.lowField.text = String(sampleModel[indexPath.item].temperatureMin)
+        cell.highField.text = String(darkSkyManager.model[indexPath.item].temperatureHigh)
+        cell.lowField.text = String(darkSkyManager.model[indexPath.item].temperatureLow)
         return cell
     }
     

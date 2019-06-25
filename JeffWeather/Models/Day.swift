@@ -9,15 +9,20 @@
 import Foundation
 import UIKit
 
-struct Day {
-    var time: Date
-    var icon: String
-    var temperatureMax: Float
-    var temperatureMin: Float
-    
-    
+
+struct DarkSkyResponse:Codable {
+    var daily: Daily
 }
 
-struct forecast {
-    var forecast: [Day]
+struct Daily:Codable {
+    var data: [Day]
 }
+
+struct Day:Codable {
+    var time: Date
+    var summary: String
+    var icon: String
+    var temperatureHigh: Float
+    var temperatureLow: Float
+}
+

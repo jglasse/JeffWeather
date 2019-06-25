@@ -9,27 +9,25 @@
 import Foundation
 
 class DarkSkyManager {
-    private let APIKey = "7c6b20e30a993f19805cbe6100f1d552"
-    private var BURL:String {
-        return "https://api.darksky.net/forecast/"+APIKey
-    }
-    private let contentType = "application/json"
-    private let userAgent = "com.glasseHouse.JeffWeather.ios"
-    
-    let networkManager = NetworkManager.sharedInstance
+    static var sharedInstance  =  NetworkManager()
+    var model = [Day]()
+    private let networkManager = NetworkManager.sharedInstance
 
-    init() {
-        networkManager.baseURL = BURL
-        networkManager.contentType = contentType
-        networkManager.userAgent = userAgent
+    
+    func getForecast(lat: String, long: String, UIcompletion: @escaping ()->Void) {
+        let fullPath = "\(lat),\(long)"
+        networkManager.genericAPIGETRequest(path: fullPath, returnType: DarkSkyResponse.self, completionBlock: {(response, error) in
+            self.model = response?.daily.data ?? [Day]()
+            UIcompletion()
+        })
     }
     
-    func getForecast(lat: String, long: String) {
-        devLog("getting Forecast for latitude \(lat), longditude \(long)")
-        devLog("from URL: \(BURL) ")
-
+    func getForeCastCompletion(response: DarkSkyResponse?, err: Error?) {
+        self.model = response?.daily.data ?? [Day]()
+        print("getForeCastCompletion COMPLETED")
+        print("self.model =  \(self.model)")
+        print("self.model.count =  \(self.model.count)")
+    
     }
-    
-    
     
 }

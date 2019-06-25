@@ -8,16 +8,17 @@
 
 import Foundation
 
-class NetworkManager {
-    var baseURL = ""
-    var contentType = ""
-    var userAgent = ""
+final class NetworkManager {  // TODO: these should be moved to DarkSky Manager
+    private let APIKey = "7c6b20e30a993f19805cbe6100f1d552"
+    private var baseURLString = "https://api.darksky.net/forecast/"
+    private let userAgent = "com.GlasseHouse.JeffWeather.ios"
+    
     
     static var sharedInstance  =  NetworkManager()
     var singleNetworkSession = URLSession(configuration: .default)
     
     // MARK: - Generic Network functions
-    private func genericAPIGETRequest<T: Codable>(path: String, returnType: T.Type, completionBlock: ((T?, Error?)->Void)?) {
+     func genericAPIGETRequest<T: Codable>(path: String, returnType: T.Type, completionBlock: ((T?, Error?)->Void)?) {
         // create request and dataTask from path.
         let request = URLRequestGenerator(path: path)
         let task = singleNetworkSession.dataTask(with: request) { (data, response, responseError) in
@@ -56,20 +57,10 @@ class NetworkManager {
     
     
     private func URLRequestGenerator(path: String) -> URLRequest {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = baseURL
-        urlComponents.path = path
-        guard let url = urlComponents.url else {
-            fatalError("Could not create URL from components")
-        }
-        var request = URLRequest(url: url)
-        var headers = request.allHTTPHeaderFields ?? [:]
-        headers["Content-Type"] = contentType
-        headers["User-Agent"] = userAgent
-        request.allHTTPHeaderFields = headers
+        let bURL = URL(fileURLWithPath: baseURLString+APIKey)
+        let urlWithPath = bURL.appendingPathComponent(path)
+        var request = URLRequest(url: urlWithPath)
         request.httpMethod = "GET"  // default  request method; overridden in calls which need post or put
-        
         devLog("REQUEST DUMP:")
         devDump(request)
         return request
@@ -77,7 +68,7 @@ class NetworkManager {
     
     
     // 
-    func logReceivedJSON(data: Data) {  // logging method for developers
+   private func logReceivedJSON(data: Data) {  // logging method for developers
         let jsonString = String(data: data, encoding: .utf8)
         devLog("JSON receieved: \(String(describing: jsonString))")
     }
@@ -86,7 +77,7 @@ class NetworkManager {
     // MARK: - Error Handling
     private func handleLocalError(error: Error?) { // handles local errors, generally JSON decoding
         if let returnedError = error {
-            devLog("APTMobileNetworkManager returned local error \(returnedError.localizedDescription)")
+            devLog("NetworkManager returned local error \(returnedError.localizedDescription)")
         } else {
             devLog("handleError called, but no error passed")
         }
@@ -94,7 +85,7 @@ class NetworkManager {
     
     private func handleNetworkError(error: Error?, response: URLResponse?) {// handles errors returned from URLResponse
         if let returnedError = error {
-            devLog("APTMobileNetworkManager returned network error \(returnedError.localizedDescription)")
+            devLog("NetworkManager returned network error \(returnedError.localizedDescription)")
             if let myResponse = response as? HTTPURLResponse {
                 devLog("Response code: \(myResponse.statusCode))")
                 devLog("Response headers: \(myResponse.allHeaderFields))")
