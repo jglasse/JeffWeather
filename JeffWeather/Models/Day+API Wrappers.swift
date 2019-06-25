@@ -24,6 +24,7 @@ struct Day:Codable {
     var icon: String
     var temperatureHigh: Float
     var temperatureLow: Float
+    
     var actualDate: Date {
         return Date(timeIntervalSince1970: time)
     }

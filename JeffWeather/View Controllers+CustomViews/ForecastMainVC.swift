@@ -110,10 +110,10 @@ extension ForecastMainVC {
         }
         else
         {
-            cell.imageView.image = UIImage(named: "undefined")
+            cell.imageView.image = UIImage(named: "undefined") // to anticipate future, undefined returns from the API. Returns an 8-ball image for now.
         }
-        cell.highField.text = String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureHigh)
-        cell.lowField.text = String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureLow)
+        cell.highField.text = "H:"+String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureHigh)
+        cell.lowField.text = "L:"+String(format: "%.0f", darkSkyManager.model[indexPath.item].temperatureLow)
         return cell
     }
     
